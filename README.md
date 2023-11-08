@@ -1,66 +1,80 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Livewire
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Projekt prezentujący przykład aplikacji napisanej z użyciem następującego stosu technologicznego:
+- Laravel 10,
+- Laravel Jetstream 3,
+- LiveWire 2,
+- LaravelViews 2.
 
-## About Laravel
+**UWAGA:** Wykorzystana wersja pakietu Laravel Jetstream korzysta z LiveWire 3, który nie jest w pełni kompatybilny z przedstawionymi w tym projekcie przykładami!
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Jak uruchomić projekt
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Odtworzenie katalogu `vendor`
+W katalogu projektu należy uruchomić z linii komend skrypt  (skrypt musi posiadać uprawnienia do wykonywania `chmod 755`) wykonując polecenie:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    ./laravel_install_vendor.sh
 
-## Learning Laravel
+## Plik konfiguracyjny env.ini
+W przypadku nie korzystania z Docker'a, plik konfiguracyjny aplikacji o nazwie `env.ini` należy stosownie zmodyfikować.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Uruchomienie kontenerów
+Z katalogu głównego aplikacji należy wykonać polecenie:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    sail up -d        
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Na podstawie pliku konfiguracyjnego `docker-compose.yml` zostaną uruchomione cztery kontenery:
 
-## Laravel Sponsors
+- kontener aplikacji (nasłuchujący na porcie `:80`),
+- kontener bazy danych (nasłuchujący na porcie `:3306`),
+- kontener aplikacji `phpmyadmin` (nasłuchujący na porcie `:8081`),
+- kontener klienta poczty `mailpit` (nasłuchujący na porcie `:8025`).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Wygenerowanie klucza aplikacji
+Przed użyciem narzędzia szyfrującego Laravel musisz ustawić konfigurację klucza w pliku konfiguracyjnym `config/app.php`. Ta wartość konfiguracyjna jest ustawiana na podstawie zmiennej środowiskowej `APP_KEY`. Aby ją ustawić należy wykonać polecenie:
 
-### Premium Partners
+     sail artisan key:generate
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Podlinkowanie publicznego folderu `storage`
+Katalog `storage/app/public` może służyć do przechowywania plików, które powinny być publicznie dostępne (np. obrazy, pliki CSS lub JS). Należy utworzyć dowiązanie symboliczne w katalogu `public/storage`, które będzie wskazywało ten katalog. Aby to zrobić należy wykonać polecenie:
 
-## Contributing
+    sail artisan storage:link
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Odtworzenie katalogu `node_modules`
+Katalog pakietów JavaScript można odtworzyć z użyciem menadżera pakietów dla języka JavaScript - `npm`. Pakiety zdefiniowane w pliku `package.json` należy pobrać poleceniem
 
-## Code of Conduct
+    sail npm install
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Odtworzenie bazy danych
+Bazę danych można stworzyć i wypełnić przykładowymi danymi wykonując polecenie:
 
-## Security Vulnerabilities
+    sail artisan migrate:fresh --seed
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Uruchomienie narzędzia do budowy plików JS i CSS 
+Projekt wykorzystuje narzędzie do budowy plików JS i CSS. Uruchomione w trybie deweloperskim, pozwala na bieżąco śledzić zmiany w tego typu plikach w katalogu `resources` i udostępniać aplikacji zbudowane paczki. Narzędzie uruchamiamy poleceniem:
 
-## License
+    sail npm run dev
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**UWAGA:** Nie można zamknąć konsoli!
+
+## Praca z kontenerami
+
+### Uruchomienie kontenerów
+    sail up -d
+
+### Zatrzymanie kontenerów
+    sail down
+
+### Zatrzymanie kontenerów wraz z usunięciem wolumenów
+    sail down -v
+
+**UWAGA:** Spowoduje to usunięcie bazy danych!
+
+## Logowanie do aplikacji
+Aplikacja, poza przykładowymi kontami użytkowników, posiada trzy konta testowe:
+
+- admin.test@localhost,
+- worker.test@localhost,
+- user.test@localhost.
+
+Każde konto ma ustawione hasło `12345678`.

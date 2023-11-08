@@ -65,4 +65,10 @@ class UserFactory extends Factory
             'ownedTeams'
         );
     }
+    public function configure(): static
+    {
+        return $this->afterCreating(function (User $user) {
+            $user->assignRole(config('auth.roles.user'));
+        });
+    }
 }
