@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class UserFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = User::class;
+
     /**
      * Define the model's default state.
      *
@@ -35,6 +39,8 @@ class UserFactory extends Factory
 
     /**
      * Indicate that the model's email address should be unverified.
+     *
+     * @return $this
      */
     public function unverified(): static
     {
@@ -47,25 +53,31 @@ class UserFactory extends Factory
 
     /**
      * Indicate that the user should have a personal team.
+     *
+     * @return $this
      */
-    public function withPersonalTeam(callable $callback = null): static
+    public function withPersonalTeam(): static
     {
-        if (! Features::hasTeamFeatures()) {
+        if (!Features::hasTeamFeatures()) {
             return $this->state([]);
         }
 
         return $this->has(
             Team::factory()
-                ->state(fn (array $attributes, User $user) => [
-                    'name' => $user->name.'\'s Team',
-                    'user_id' => $user->id,
-                    'personal_team' => true,
-                ])
-                ->when(is_callable($callback), $callback),
+                ->state(function (array $attributes, User $user) {
+                    return ['name' => $user->name . '\'s Team', 'user_id' => $user->id, 'personal_team' => true];
+                }),
             'ownedTeams'
         );
     }
-    public function configure(): static
+
+    /**
+     * Configure the model factory.
+     * https://laravel.com/docs/9.x/database-testing#factory-callbacks
+     *
+     * @return $this
+     */
+    public function configure()
     {
         return $this->afterCreating(function (User $user) {
             $user->assignRole(config('auth.roles.user'));

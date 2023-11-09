@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::name('users.')->prefix('users')->group(function () {
+        Route::get('', [UserController::class, 'index'])
+            ->name('index')
+            ->middleware(['permission:users.index']);
+    });
 });
