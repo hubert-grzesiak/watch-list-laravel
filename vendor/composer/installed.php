@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '84c49fd1bb2c38e0988f51ee33d61c007d0f5192',
+        'reference' => '62347bc4a2a6d237f28c9a56c047cc8ab274db6f',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -436,7 +436,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '84c49fd1bb2c38e0988f51ee33d61c007d0f5192',
+            'reference' => '62347bc4a2a6d237f28c9a56c047cc8ab274db6f',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -646,6 +646,24 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'opcodesio/log-viewer' => array(
+            'pretty_version' => 'v3.1.5',
+            'version' => '3.1.5.0',
+            'reference' => '69d886a779611da501841148314b03b2c9a52108',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../opcodesio/log-viewer',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'opcodesio/mail-parser' => array(
+            'pretty_version' => 'v0.1.5',
+            'version' => '0.1.5.0',
+            'reference' => '7668596baa73ef2678ab6888f1a4639d7d054f21',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../opcodesio/mail-parser',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'paragonie/constant_time_encoding' => array(
             'pretty_version' => 'v2.6.3',
             'version' => '2.6.3.0',
@@ -847,8 +865,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(

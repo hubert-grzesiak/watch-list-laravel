@@ -10,9 +10,11 @@
             <div class="sm:rounded-lg ">
                 <div class="p-4 flex flex-col gap-1">
                     <h3 class="text-lg font-semibold">Logi:</h3>
+                    <div class="flex flex-col-reverse">
                     @foreach ($logLines as $line)
-                        <p class="rounded-[10px] bg-purple-100 overflow-x-scroll p-4 ">{{ $line }}</p>
+                        <p class="rounded-[10px] bg-primary text-secondary overflow-x-scroll p-4">{{ $line }}</p>
                     @endforeach
+                    </div>
                 </div>
             </div>
         </div>
