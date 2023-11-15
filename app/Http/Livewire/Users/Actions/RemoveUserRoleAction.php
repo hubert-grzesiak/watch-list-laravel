@@ -24,7 +24,7 @@ class RemoveUserRoleAction extends Action
      * This should be a valid Feather icon string
      * @var String
      */
-    public $icon = 'droplet';
+    public $icon = 'minus';
 
     /**
      * Execute the action when the user clicked on the button

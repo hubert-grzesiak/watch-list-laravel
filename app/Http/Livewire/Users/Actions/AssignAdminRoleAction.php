@@ -24,7 +24,7 @@ class AssignAdminRoleAction extends Action
      * This should be a valid Feather icon string
      * @var String
      */
-    public $icon = 'shield';
+    public $icon = 'plus';
 
     /**
      * Execute the action when the user clicked on the button
