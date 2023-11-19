@@ -1,12 +1,14 @@
-<nav x-data="{ open: false }" class="bg-primary border-b border-gray-100">
+<nav x-data="{ open: false }" class=" border-b">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <img class="fixed top-0 translate-y-[-200px] z-[-10]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1700396444/yx8fpwhz49ulm4bspzg9.png"/>
+
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img class="w-[67px] h-[60px] rounded-full" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1699994378/vzlhwaqeedoxa8qh0dpa.png">
+                        <img class="w-[67px] h-[60px]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1700397552/pqfmcgur0y5ywzakp1vb.svg">
                     </a>
                 </div>
 
@@ -28,6 +30,11 @@
                     @can('users.index')
                         <x-nav-link href="log-viewer" :active="request()->is('log-viewer*')" class="text-secondary">
                             LogsPro
+                        </x-nav-link>
+                    @endcan
+                    @can('categories.index')
+                        <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')" class="text-secondary">
+                            {{ __('translation.navigation.categories') }}
                         </x-nav-link>
                     @endcan
                 </div>
@@ -170,6 +177,11 @@
                     LogsPro
                 </x-responsive-nav-link>
             @endcan
+            @can('categories.index')
+                <x-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')" class="text-secondary">
+                    {{ __('translation.navigation.categories') }}
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->
@@ -242,4 +254,12 @@
             </div>
         </div>
     </div>
+    <!-- Page Heading -->
+    @if (isset($header))
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
+    @endif
 </nav>

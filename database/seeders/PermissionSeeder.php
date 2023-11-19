@@ -21,10 +21,22 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'users.destroy']);
         Permission::create(['name' => 'users.change_role']);
 
+
+        Permission::create(['name' => 'categories.index']);
+        Permission::create(['name' => 'categories.manage']);
+
+
         $userRole = Role::findByName(config('auth.roles.admin'));
         $userRole->givePermissionTo('users.index');
         $userRole->givePermissionTo('users.store');
         $userRole->givePermissionTo('users.destroy');
         $userRole->givePermissionTo('users.change_role');
+
+        $userRole->givePermissionTo('categories.index');
+        $userRole->givePermissionTo('categories.manage');
+
+        // UŻYTKOWNIKA SYSTEMU
+        $userRole = Role::findByName(config('auth.roles.user'));
+
     }
 }

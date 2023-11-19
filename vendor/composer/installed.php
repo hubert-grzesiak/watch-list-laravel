@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '1df6e19915c26becc0ba8e2c8fdcf16ed547e344',
+        'reference' => 'ce326c25e9162edcb7074dd4672afa08e553e62c',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -436,7 +436,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '1df6e19915c26becc0ba8e2c8fdcf16ed547e344',
+            'reference' => 'ce326c25e9162edcb7074dd4672afa08e553e62c',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -865,8 +865,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '3.0.0',
-                1 => '1.0|2.0|3.0',
+                0 => '1.0|2.0|3.0',
+                1 => '3.0.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -1421,6 +1421,15 @@
             'reference' => '11cb2199493b2f8a3b53e7f19068fc6aac760991',
             'type' => 'library',
             'install_path' => __DIR__ . '/../webmozart/assert',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'wireui/wireui' => array(
+            'pretty_version' => 'v1.17.12',
+            'version' => '1.17.12.0',
+            'reference' => 'd75dafb76bbb64a303e7a88b0d1fc6989934a003',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../wireui/wireui',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

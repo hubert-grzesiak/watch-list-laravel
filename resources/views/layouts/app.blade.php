@@ -11,34 +11,38 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     <!-- Styles -->
     @livewireStyles
     @laravelViewsStyles(laravel-views)
+
+    <!-- Scripts -->
+    @wireUiScripts
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 <body class="font-sans antialiased">
 <x-banner />
+<x-notifications />
+<x-dialog />
 
-<div class="bg-gray-100 flex flex-col justify-between h-[100vh]">
+<div class="relative flex flex-col justify-between h-[100vh]">
     @livewire('navigation-menu')
 
     <!-- Page Heading -->
     @if (isset($header))
-        <header class="bg-white shadow">
+        <header class="bg-white/70 h-full w-full bg-gray-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100 shadow w-full">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>
         </header>
     @endif
-
     <!-- Page Content -->
-    <main class="flex justify-center items-center">
+    <main class="">
         {{ $slot }}
     </main>
-    <footer class="flex w-full justify-center">
-        <ul class="flex w-full gap-4 py-5 bg-secondary text-primary justify-center">
+    <footer class="flex w-full justify-center shadow">
+        <ul class="flex w-full gap-4 py-5 h-full w-full bg-white bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100
+  justify-center">
             <li><a href="movies">Movies</a></li>
             <li><a href="series">Series</a></li>
             <li><a href="podcasts">Podcasts</a></li>
