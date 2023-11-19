@@ -80,5 +80,6 @@ return [
         'manufacturers' => 'Producenci',
         'products' => 'Produkty',
         'order_wizard' => 'Składanie zamówienia',
+        'watchlist' => 'Moja Lista'
     ],
 ];

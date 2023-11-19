@@ -10,7 +10,7 @@
             <div class="bg-white shadow-xl sm:rounded-lg table-view-wrapper">
                 <div class="grid justify-items-stretch pt-2 pr-2">
                     @can('create', App\Models\Category::class)
-                        <x-button primary
+                        <x-wireui-button primary
                                   label="{{ __('categories.actions.create') }}"
                                   href="{{ route('categories.create') }}"
                                   class="justify-self-end bg-accent text-primary focus:outline-primary focus:border-none" />

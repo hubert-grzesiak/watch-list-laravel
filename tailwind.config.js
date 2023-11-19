@@ -9,13 +9,16 @@ export default {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
-        './vendor/wireui/wireui/resources/**/*.blade.php',
-        './vendor/wireui/wireui/ts/**/*.ts',
-        './vendor/wireui/wireui/src/View/**/*.php'
+        './vendor/wireui.php/wireui.php/resources/**/*.blade.php',
+        './vendor/wireui.php/wireui.php/ts/**/*.ts',
+        './vendor/wireui.php/wireui.php/src/View/**/*.php'
     ],
 
     theme: {
         extend: {
+            textShadow: {
+                'custom': '-webkit-text-stroke: 3px black;',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
@@ -29,6 +32,11 @@ export default {
 
         },
     },
+    variants: {
+        extend: {
+            textShadow: ['responsive', 'hover', 'focus'],
+        },
+    },
 
-    plugins: [forms, typography],
+    plugins: [forms, typography, require('tailwindcss-textshadow')],
 };

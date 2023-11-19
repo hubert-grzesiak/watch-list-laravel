@@ -114,6 +114,7 @@ return [
 
     'roles'=> [
         'admin'=> env('ADMIN_ROLE_NAME', 'admin'),
+        'editor' => env('EDITOR_ROLE_NAME', 'editor'),
         'user' => env('USER_ROLE_NAME', 'user'),
     ]
 ];

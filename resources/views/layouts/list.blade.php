@@ -25,7 +25,7 @@
 <x-wireui-notifications />
 <x-wireui-dialog />
 
-<div class="relative flex flex-col justify-between h-[100vh]">
+<div class="">
     @livewire('navigation-menu')
 
     <!-- Page Heading -->

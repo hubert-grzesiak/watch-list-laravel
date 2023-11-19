@@ -9,3 +9,6 @@
 .table-view-wrapper .pointer-events-none.absolute.inset-y-0.right-0.flex.items-center.px-2.text-gray-700 {
     display: none
 }
+.customTextShadow {
+    -webkit-text-stroke: 0.5px black;
+}

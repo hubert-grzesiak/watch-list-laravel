@@ -1,14 +1,14 @@
 <nav x-data="{ open: false }" class=" border-b">
     <!-- Primary Navigation Menu -->
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <img class="fixed top-0 translate-y-[-200px] z-[-10]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1700396444/yx8fpwhz49ulm4bspzg9.png"/>
+        <img alt="bg" class="fixed top-0 translate-y-[-200px] z-[-10]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1700396444/yx8fpwhz49ulm4bspzg9.png"/>
 
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img class="w-[67px] h-[60px]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1700397552/pqfmcgur0y5ywzakp1vb.svg">
+                        <img alt='bg' class="w-[67px] h-[60px]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1700397552/pqfmcgur0y5ywzakp1vb.svg">
                     </a>
                 </div>
 
@@ -35,6 +35,11 @@
                     @can('categories.index')
                         <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')" class="text-secondary">
                             {{ __('translation.navigation.categories') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('list.index')
+                        <x-nav-link href="{{ route('list.index') }}" :active="request()->routeIs('list.index')" class="text-secondary">
+                            {{ __('translation.navigation.watchlist') }}
                         </x-nav-link>
                     @endcan
                 </div>

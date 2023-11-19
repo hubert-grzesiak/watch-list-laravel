@@ -25,6 +25,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'categories.index']);
         Permission::create(['name' => 'categories.manage']);
 
+        Permission::create(['name' => 'movies.index']);
+        Permission::create(['name' => 'movies.manage']);
+
+        Permission::create(['name' => 'list.index']);
+        Permission::create(['name' => 'list.manage']);
 
         $userRole = Role::findByName(config('auth.roles.admin'));
         $userRole->givePermissionTo('users.index');
@@ -35,8 +40,21 @@ class PermissionSeeder extends Seeder
         $userRole->givePermissionTo('categories.index');
         $userRole->givePermissionTo('categories.manage');
 
+        $userRole->givePermissionTo('movies.index');
+        $userRole->givePermissionTo('movies.manage');
+
+        // EDYTORA FILMÓW
+        $userRole = Role::findByName(config('auth.roles.editor'));
+        $userRole->givePermissionTo('categories.index');
+        $userRole->givePermissionTo('categories.manage');
+
+        $userRole->givePermissionTo('movies.index');
+        $userRole->givePermissionTo('movies.manage');
+
         // UŻYTKOWNIKA SYSTEMU
         $userRole = Role::findByName(config('auth.roles.user'));
+        $userRole->givePermissionTo('list.index');
+        $userRole->givePermissionTo('list.manage');
 
     }
 }

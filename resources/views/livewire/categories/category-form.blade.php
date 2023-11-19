@@ -14,14 +14,15 @@
                 <label for="name">{{ __('categories.attributes.name') }}</label>
             </div>
             <div class="">
-                <x-input placeholder="{{ __('translation.enter') }}" wire:model="category.name" />
+                <x-wireui-input placeholder="{{ __('translation.enter') }}" wire:model="category.name" />
             </div>
         </div>
 
         <hr class="my-2">
         <div class="flex justify-end pt-2">
-            <x-button href="{{ route('categories.index') }}" secondary class="mr-2 bg-accent text-primary" label="{{ __('translation.back') }}" />
-            <x-button type="submit" primary label="{{ __('translation.save') }}" spinner class="bg-accent text-primary" />
+            <x-wireui-button href="{{ route('categories.index') }}" secondary class="mr-2 bg-accent text-primary" label="{{ __('translation.back') }}" />
+            <x-wireui-button type="submit" primary label="{{ __('translation.save') }}" spinner class="bg-accent text-primary" />
         </div>
+
     </form>
 </div>

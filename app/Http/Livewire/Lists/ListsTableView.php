@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Users;
+namespace App\Http\Livewire\Lists;
 
 use App\Models\User;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 use App\Http\Livewire\Users\Filters\RoleFilter;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use App\Http\Livewire\Users\Filters\EmailVerifiedFilter;
-use App\Http\Livewire\Users\Actions\AssignAdminRoleAction;
-use App\Http\Livewire\Users\Actions\RemoveAdminRoleAction;
-use App\Http\Livewire\Users\Actions\AssignEditorRoleAction;
-use App\Http\Livewire\Users\Actions\RemoveEditorRoleAction;
-class UsersTableView extends TableView
+
+class ListsTableView extends TableView
 {
     /**
      * Sets a model class to get the initial data
@@ -34,7 +30,7 @@ class UsersTableView extends TableView
     /**
      * Set number elements per page
      */
-    protected $paginate = 5;
+    protected $paginate = 10;
 
     /**
      * Sets a initial query with the data to fill the table
@@ -85,18 +81,18 @@ class UsersTableView extends TableView
     {
         return [
             new RoleFilter,
-            new EmailVerifiedFilter,
+//            new EmailVerifiedFilter,
         ];
     }
 
     /** Actions by item */
-    protected function actionsByRow()
-    {
-        return [
-            new AssignAdminRoleAction,
-            new RemoveAdminRoleAction,
-            new AssignEditorRoleAction,
-            new RemoveEditorRoleAction,
-        ];
-    }
+//    protected function actionsByRow()
+//    {
+//        return [
+//            new AssignAdminRoleAction,
+//            new RemoveAdminRoleAction,
+//            new AssignEditorRoleAction,
+//            new RemoveEditorRoleAction,
+//        ];
+//    }
 }

@@ -80,6 +80,6 @@ class CategoryForm extends Component
         );
         $this->editMode = true;
         // opcjonalne przekierowanie na inny adres URL
-        // return redirect()->route('categories.index');
+         return redirect()->route('categories.index');
     }
 }
