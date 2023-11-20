@@ -14,27 +14,27 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"  class="text-secondary">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+{{--                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"  class="text-secondary">--}}
+{{--                        {{ __('Dashboard') }}--}}
+{{--                    </x-nav-link>--}}
                     @can('users.index')
                         <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')" class="text-secondary">
                             {{ __('translation.navigation.users') }}
                         </x-nav-link>
                     @endcan
                     @can('users.index')
-                        <x-nav-link href="{{ route('logs.index') }}" :active="request()->routeIs('logs.index')" class="text-secondary">
-                            Logs
-                        </x-nav-link>
-                    @endcan
-                    @can('users.index')
                         <x-nav-link href="log-viewer" :active="request()->is('log-viewer*')" class="text-secondary">
-                            LogsPro
+                            Logi
                         </x-nav-link>
                     @endcan
                     @can('categories.index')
                         <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')" class="text-secondary">
                             {{ __('translation.navigation.categories') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('platforms.index')
+                        <x-nav-link href="{{ route('platforms.index') }}" :active="request()->routeIs('platforms.index')" class="text-secondary">
+                            {{ __('translation.navigation.platforms') }}
                         </x-nav-link>
                     @endcan
                     @can('list.index')
@@ -164,27 +164,27 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+{{--            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
+{{--                {{ __('Dashboard') }}--}}
+{{--            </x-responsive-nav-link>--}}
             @can('users.index')
                 <x-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                     {{ __('translation.navigation.users') }}
                 </x-responsive-nav-link>
             @endcan
-            @can('users.index')
-                <x-responsive-nav-link href="{{ route('logs.index') }}" :active="request()->routeIs('logs.index')">
-                    Logs
-                </x-responsive-nav-link>
-            @endcan
             @can('view-logs')
                 <x-responsive-nav-link href="logs-viewer" :active="request()->is('logs-viewer*')">
-                    LogsPro
+                    Logi
                 </x-responsive-nav-link>
             @endcan
             @can('categories.index')
                 <x-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')" class="text-secondary">
                     {{ __('translation.navigation.categories') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('platforms.index')
+                <x-responsive-nav-link href="{{ route('platforms.index') }}" :active="request()->routeIs('platforms.index')" class="text-secondary">
+                    {{ __('translation.navigation.platforms') }}
                 </x-responsive-nav-link>
             @endcan
         </div>

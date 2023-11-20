@@ -25,6 +25,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'categories.index']);
         Permission::create(['name' => 'categories.manage']);
 
+        Permission::create(['name' => 'platforms.index']);
+        Permission::create(['name' => 'platforms.manage']);
+
+        //TODO
         Permission::create(['name' => 'movies.index']);
         Permission::create(['name' => 'movies.manage']);
 
@@ -39,6 +43,9 @@ class PermissionSeeder extends Seeder
 
         $userRole->givePermissionTo('categories.index');
         $userRole->givePermissionTo('categories.manage');
+
+        $userRole->givePermissionTo('platforms.index');
+        $userRole->givePermissionTo('platforms.manage');
 
         $userRole->givePermissionTo('movies.index');
         $userRole->givePermissionTo('movies.manage');

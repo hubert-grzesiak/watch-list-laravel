@@ -13,6 +13,48 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory()->count(50)->create();
+        $categories = [
+            'Akcja',
+            'Komedia',
+            'Dramat',
+            'Thriller',
+            'Horror',
+            'Science Fiction',
+            'Fantasy',
+            'Romans',
+            'Przygodowy',
+            'Kryminał',
+            'Biograficzny',
+            'Dokumentalny',
+            'Wojenny',
+            'Musical',
+            'Animowany',
+            'Historyczny',
+            'Western',
+            'Film Noir',
+            'Indie',
+            'Młodzieżowe',
+            'Dla dzieci',
+            'Muzyczny',
+            'Sportowy',
+            'Edukacyjny',
+            'Mockument',
+            'Eksperymentalny',
+            'Antologia',
+            'Czarna komedia',
+            'Superbohaterowie',
+            'Polityczny',
+            'Postapokaliptyczny',
+            'Film katastroficzny',
+            'Erotyczny',
+            'Mockbuster',
+            'Silent Film',
+            'Vintage',
+            'Cyberpunk'
+        ];
+
+        foreach ($categories as $name) {
+            Category::create(['name' => $name]);
+        }
     }
 }

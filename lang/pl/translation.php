@@ -77,6 +77,7 @@ return [
         'dashboard' => 'Dashboard',
         'users' => 'Użytkownicy',
         'categories' => 'Kategorie',
+        'platforms' => 'Platformy streamingowe',
         'manufacturers' => 'Producenci',
         'products' => 'Produkty',
         'order_wizard' => 'Składanie zamówienia',

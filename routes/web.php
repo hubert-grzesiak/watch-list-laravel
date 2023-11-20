@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
@@ -45,7 +46,14 @@ Route::middleware([
     Route::resource('categories', CategoryController::class)->only([
         'index', 'create', 'edit'
     ]);
+
+    Route::resource('platforms', PlatformController::class)->only([
+        'index', 'create', 'edit'
+    ]);
+
     Route::resource('list', ListController::class)->only([
         'index',
     ]);
+
+
 });
