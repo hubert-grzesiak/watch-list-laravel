@@ -46,7 +46,6 @@ class CategorySeeder extends Seeder
             'Polityczny',
             'Postapokaliptyczny',
             'Film katastroficzny',
-            'Erotyczny',
             'Mockbuster',
             'Silent Film',
             'Vintage',

@@ -12,7 +12,7 @@
         </ul>
     </div>
     <div class="flex justify-center items-center flex-col px-[24px] py-[48px]">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-7xl w-full mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white shadow-xl sm:rounded-lg">
                     <livewire:lists.lists-table-view />
                 </div>
