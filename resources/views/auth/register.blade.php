@@ -1,4 +1,6 @@
 <x-guest-layout>
+    <div class="relative z-10">
+        <img alt="bg" class="fixed object-center bg-center top-0 z-[-10]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1701034535/bhmrreybwi97x2zqjopy.jpg"/>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -57,4 +59,5 @@
             </div>
         </form>
     </x-authentication-card>
+    </div>
 </x-guest-layout>

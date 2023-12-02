@@ -14,6 +14,8 @@ class PlatformController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Platform::class);
+
         return view(
             'platforms.index'
         );
@@ -26,6 +28,8 @@ class PlatformController extends Controller
      */
     public function create()
     {
+        $this->authorize('viewAny', Platform::class);
+
         return view(
             'platforms.form'
         );
@@ -39,6 +43,7 @@ class PlatformController extends Controller
      */
     public function edit(Platform $platform)
     {
+        $this->authorize('update', $platform);
         return view(
             'platforms.form',
             [

@@ -13,8 +13,8 @@
             <div class="">
                 <label for="name">{{ __('platforms.attributes.name') }}</label>
             </div>
-            <div class="">
-                <x-wireui-input placeholder="{{ __('translation.enter') }}" wire:model="category.name" />
+            <div class=''>
+                <x-wireui-input placeholder="{{ __('translation.enter') }}" wire:model="platform.name" />
             </div>
         </div>
 
@@ -26,3 +26,4 @@
 
     </form>
 </div>
+<script src="../../../../lib/utils.js"></script>

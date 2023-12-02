@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Opcodes\LogViewer\LogFile;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +24,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
+
+        Gate::define('downloadLogFile', function (?User $user, LogFile $file) {
+            // return true if the user is allowed to download the specific log file.
+        });
     }
 }

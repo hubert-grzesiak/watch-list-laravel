@@ -10,6 +10,7 @@
             <div class="bg-white shadow-xl sm:rounded-lg">
                 @if (isset($category))
                     <livewire:categories.category-form :category="$category" :editMode="true" />
+
                 @else
                     <livewire:categories.category-form :editMode="false" />
                 @endif

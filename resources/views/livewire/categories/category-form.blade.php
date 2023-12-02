@@ -23,6 +23,5 @@
             <x-wireui-button href="{{ route('categories.index') }}" secondary class="mr-2 bg-accent text-primary" label="{{ __('translation.back') }}" />
             <x-wireui-button type="submit" primary label="{{ __('translation.save') }}" spinner class="bg-accent text-primary" />
         </div>
-
     </form>
 </div>
