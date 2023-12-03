@@ -68,6 +68,6 @@ class PlatformPolicy
     public function restore(User $user, Platform $platform)
     {
         return $platform->deleted_at !== null
-            && $user->can('platforms.php.manage');
+            && $user->can('platforms.manage');
     }
 }

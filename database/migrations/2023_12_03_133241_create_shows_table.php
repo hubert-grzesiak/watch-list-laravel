@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('shows', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Name');
-            $table->string('Director')->nullable();
-            $table->year('YearOfRelease')->nullable();
-            $table->integer('NumberOfEpisodes')->nullable();
+            $table->string('title');
+            $table->text('description');
+            $table->string('year')->nullable();
+            $table->string('image')->nullable();
+            $table->string('genre')->nullable();
+            $table->decimal('rating', 3, 1)->nullable();
+            $table->integer('numberOfEpisodes');
+            $table->string('platform');
+            $table->string('type');
             $table->timestamps();
         });
     }

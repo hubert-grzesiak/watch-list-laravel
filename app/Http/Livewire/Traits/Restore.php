@@ -1,87 +1,33 @@
 <?php
 
-namespace App\Http\Livewire\Actions;
+namespace App\Http\Livewire\Traits;
 
-use LaravelViews\Views\View;
-use LaravelViews\Actions\Action;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Akcja przywracania usuniętego modelu
- */
-class RestoreAction extends Action
+trait Restore
 {
-    /**
-     * Any title you want to be displayed
-     * @var String
-     * */
-    public $title = '';
-
-    public function __construct(?String $title = null)
+    protected function restoreNotificationTitle()
     {
-        parent::__construct();
-        if ($title !== null) {
-            $this->title = $title;
-        } else {
-            $this->title = __('translation.actions.restore');
-        }
+        return __('translation.messages.successes.restored_title');
     }
 
-    /**
-     * This should be a valid Feather icon string
-     * @var String
-     */
-    public $icon = 'trash';
-
-    /**
-     * Tytuł okna dialogowego
-     *
-     * @return String
-     */
-    protected function dialogTitle(): String
+    protected function restoreNotificationDescription(Model $model)
     {
-        return __('translation.dialogs.restore.title');
-    }
-
-    /**
-     * Opis okna dialogowego
-     *
-     * @param Model $model
-     * @return String
-     */
-    protected function dialogDescription(Model $model): String
-    {
-        return __('translation.dialogs.restore.description', [
+        return __('translation.messages.successes.restored_description', [
             'model' => $model
         ]);
     }
 
     /**
-     * Execute the action when the user clicked on the button
-     *
-     * @param $model Manufacturer object of the list where the user has clicked
-     * @param $view Current view where the action was executed from
+     * Przywracanie wybranego modelu
      */
-    public function handle($model, View $view)
+    public function restore(int $id)
     {
-        $view->dialog()->confirm([
-            'title' => $this->dialogTitle(),
-            'description' => $this->dialogDescription($model),
-            'icon' => 'question',
-            'iconColor' => 'text-green-500',
-            'accept' => [
-                'label' => __('translation.yes'),
-                'method' => 'restore',
-                'params' => $model->id,
-            ],
-            'reject' => [
-                'label' => __('translation.no'),
-            ],
-        ]);
-    }
-
-    public function renderIf($model, View $view)
-    {
-        return request()->user()->can('restore', $model);
+        $model = $this->model::withTrashed()->find($id);
+        $model->restore();
+        $this->notification()->success(
+            $title = $this->restoreNotificationTitle(),
+            $description = $this->restoreNotificationDescription($model)
+        );
     }
 }

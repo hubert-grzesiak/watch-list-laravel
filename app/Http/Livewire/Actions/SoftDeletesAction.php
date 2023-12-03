@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Actions;
 
+use App\Models\Platform;
 use Illuminate\Database\Eloquent\Model;
 use LaravelViews\Actions\Action;
 use LaravelViews\Views\View;
@@ -59,7 +60,7 @@ class SoftDeletesAction extends Action
     /**
      * Execute the action when the user clicked on the button
      *
-     * @param $model Manufacturer object of the list where the user has clicked
+     * @param $model Platform object of the list where the user has clicked
      * @param $view Current view where the action was executed from
      */
     public function handle($model, View $view)

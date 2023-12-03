@@ -58,6 +58,9 @@ class PermissionSeeder extends Seeder
         $userRole->givePermissionTo('movies.index');
         $userRole->givePermissionTo('movies.manage');
 
+        $userRole->givePermissionTo('platforms.index');
+
+
         // UŻYTKOWNIKA SYSTEMU
         $userRole = Role::findByName(config('auth.roles.user'));
         $userRole->givePermissionTo('list.index');
