@@ -13,4 +13,12 @@ class Platform extends Model
     protected $fillable = [
         'name'
     ];
+    /**
+     * Kategoria może mieć przypisanych wiele produktów
+     */
+    public function shows()
+    {
+        return $this->belongsToMany(Show::class);
+    }
+
 }

@@ -13,4 +13,9 @@ class Category extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function shows()
+    {
+        return $this->belongsToMany(Show::class);
+    }
 }
