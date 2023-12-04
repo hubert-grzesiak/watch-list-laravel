@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 class ShowsGridView extends GridView
 {
     protected $model = Show::class;
-    public $maxCols = 3;
+    public $maxCols = 5;
     public $cardComponent = 'livewire.shows.grid-view-item';
 
     public $searchBy = [
@@ -33,12 +33,11 @@ class ShowsGridView extends GridView
     public function card($model)
     {
         return [
-            'image' => $model->imageUrl(), // Assuming Show has an imageUrl method
-            'title' => $model->name,
+            'image' => $model->image,
+            'title' => $model->title,
             'description' => $model->description,
-            'genre' => $model->genre, // Assuming Show has a genre field
-            'rating' => $model->rating, // Assuming Show has a rating field
-            // Add more fields as necessary
+            'genre' => $model->genre,
+            'rating' => $model->rating,
         ];
     }
 }

@@ -57,6 +57,7 @@ class Show extends Model
     }
 
 
+
     /**
      * Pełna ścieżka do zdjęcia produktu.
      *
@@ -69,7 +70,7 @@ class Show extends Model
                 if ($value === null) {
                     return null;
                 }
-                return config('filesystems.images_dir') . '/' . $value;
+                return config('filesystems.images_dir') . '' . $value;
             },
         );
     }
