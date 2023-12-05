@@ -45,7 +45,8 @@ class Show extends Model
      */
     public function platforms()
     {
-        return $this->belongsToMany(Platform::class);
+        return $this->belongsToMany(Platform::class, 'show_platforms', 'show_id', 'platform_id');
+
     }
 
     /**
@@ -53,8 +54,9 @@ class Show extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'show_categories', 'show_id', 'category_id');
     }
+
 
 
     /**

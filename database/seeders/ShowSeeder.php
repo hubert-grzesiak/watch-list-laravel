@@ -35,13 +35,23 @@ class ShowSeeder extends Seeder
                     'title' => $serie['title'],
                     'description' => $serie['description'],
                     'image' => $serie['image'],
-                    'genre' => implode(', ', $serie['genre']), // Jeśli gatunek jest tablicą.
                     'rating' => $serie['rating'],
                     'year' => $serie['year'],
                     'numberOfEpisodes' => rand(10, 50), // Dla seriali dodajemy losową liczbę odcinków
-                    'platform' => $randomPlatform,
                     'type'=> 'series'
                 ]);
+
+                // Znajdź lub utwórz platformę
+                $platform = Platform::firstOrCreate(['name' => $randomPlatform]);
+
+                // Dołącz platformę do pokazu
+                $show->platforms()->attach($platform->id);
+                // Przypisanie gatunków jako kategorii
+                $genreNames = $serie['genre']; // Zakładamy, że 'genre' to tablica z nazwami gatunków
+                foreach ($genreNames as $genreName) {
+                    $category = Category::firstOrCreate(['name' => $genreName]);
+                    $show->categories()->attach($category);
+                }
                 // Log the information to the console.
                 Log::info('Added series to database:', [
                     'Title' => $show->title,
@@ -64,18 +74,31 @@ class ShowSeeder extends Seeder
             foreach ($movies as $movie) {
                 $randomPlatform = $allPlatforms[array_rand($allPlatforms)];
 
+                // Tworzymy pokaz bez gatunku
                 $show = Show::create([
                     'title' => $movie['title'],
                     'description' => $movie['description'],
                     'image' => $movie['image'],
-                    'genre' => implode(', ', $movie['genre']), // Jeśli gatunek jest tablicą.
                     'rating' => $movie['rating'],
                     'year' => $movie['year'],
                     'numberOfEpisodes' => 1,
-                    'platform' => $randomPlatform,
                     'type' => 'movie'
                 ]);
-                // Log the information to the console.
+
+                // Znajdź lub utwórz platformę
+                $platform = Platform::firstOrCreate(['name' => $randomPlatform]);
+
+                // Dołącz platformę do pokazu
+                $show->platforms()->attach($platform->id);
+
+                // Przypisanie gatunków jako kategorii
+                $genreNames = $movie['genre']; // Zakładamy, że 'genre' to tablica z nazwami gatunków
+                foreach ($genreNames as $genreName) {
+                    $category = Category::firstOrCreate(['name' => $genreName]);
+                    $show->categories()->attach($category);
+                }
+
+                // Logowanie informacji
                 Log::info('Added movie to database:', [
                     'Title' => $show->title,
                     'Year' => $show->year,

@@ -16,6 +16,6 @@ class Category extends Model
 
     public function shows()
     {
-        return $this->belongsToMany(Show::class);
+        return $this->belongsToMany(Show::class, 'show_categories', 'category_id', 'show_id');
     }
 }

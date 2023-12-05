@@ -17,7 +17,13 @@ class ShowsGridView extends GridView
         'genre', // Genre of the show
         'rating', // Rating of the show
     ];
-
+    public function sortableBy()
+    {
+        return [
+            'Year' => 'year',
+            'Rating' => 'rating'
+        ];
+    }
     public function repository(): Builder
     {
         // Adjust the query to fit the Show model
@@ -45,10 +51,10 @@ class ShowsGridView extends GridView
     /**
      * Set filters
      */
-//    protected function filters()
-//    {
-//        return [
-//            new ShowFilter,
-//        ];
-//    }
+    protected function filters()
+    {
+        return [
+            new ShowFilter,
+        ];
+    }
 }

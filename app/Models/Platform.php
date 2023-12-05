@@ -18,7 +18,7 @@ class Platform extends Model
      */
     public function shows()
     {
-        return $this->belongsToMany(Show::class);
+        return $this->belongsToMany(Show::class, 'show_platforms', 'platform_id', 'show_id');
     }
 
 }

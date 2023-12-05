@@ -27,16 +27,13 @@
 
                     </div>
                     <!-- Convert genre string to array and remove any whitespace from each genre -->
-                    @php
-                        $genres = explode(',', $show->genre);
-                        $genres = array_map('trim', $genres);
-                @endphp
+
                 <div class="modalTextGreyInfo">
-                    @foreach($genres as $genre)
+                    @foreach($show->categories as $category)
                         @if(!$loop->first)
                             &middot;
                     @endif
-                    {{ $genre }}
+                    {{ $category->name }}
                     @endforeach
                 </div>
                 <div class="flex flex-row items-center gap-1">
@@ -47,6 +44,18 @@
 
         </div>
         <p class="text-white mb-[12px]">{{ $show->description }}</p>
+        <p class="mt-[12px] mb-[6px] modalTextGreyInfo">Available on:</p>
+        <div class="flex gap-2">
+            @if ($show->platforms->isNotEmpty())
+                    @foreach ($show->platforms as $platform)
+                        <p class="text-white bg-[#FFFFFF14] px-2 py-1 rounded-lg text-center w-fit text-[12px]">{{ $platform->name }}</p>
+                    @endforeach
+
+            @else
+                <p>Aktualnie niedostępne na żadnej platformie.</p>
+            @endif
+        </div>
+
         <div class="pt-[12px]">
             <button  class="hover:opacity-[0.88] text-[#5799EF] flex bg-[#FFFFFF14] px-[16px] py-[7px] w-full rounded-[4px] items-center justify-center gap-[2px]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ipc-icon ipc-icon--add ipc-btn__icon ipc-btn__icon--pre" viewBox="0 0 24 24" fill="currentColor" role="presentation">
