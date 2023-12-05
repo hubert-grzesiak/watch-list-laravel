@@ -12,6 +12,9 @@ return [
         'platform' => 'Platforma',
         'type' => 'Typ'
     ],
+    'filters' => [
+        'genres' => 'Kategoria filmu lub serialu',
+    ]
 ];
 
 

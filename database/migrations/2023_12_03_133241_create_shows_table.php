@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('platform');
             $table->string('type');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

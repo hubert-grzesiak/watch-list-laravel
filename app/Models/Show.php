@@ -57,7 +57,6 @@ class Show extends Model
     }
 
 
-
     /**
      * Pełna ścieżka do zdjęcia produktu.
      *

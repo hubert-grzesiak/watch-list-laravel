@@ -5,6 +5,13 @@
 [x-cloak] {
     display: none;
 }
+.modalTransition {
+    transition: opacity 75ms linear,transform .15s ease-in;
+}
+
+.modalTextGreyInfo{
+    color: #FFFFFFB3;
+}
 
 .table-view-wrapper .pointer-events-none.absolute.inset-y-0.right-0.flex.items-center.px-2.text-gray-700 {
     display: none

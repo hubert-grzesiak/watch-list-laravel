@@ -40,7 +40,7 @@ class ShowSeeder extends Seeder
                     'year' => $serie['year'],
                     'numberOfEpisodes' => rand(10, 50), // Dla seriali dodajemy losową liczbę odcinków
                     'platform' => $randomPlatform,
-                    'type'=> 'serie'
+                    'type'=> 'series'
                 ]);
                 // Log the information to the console.
                 Log::info('Added series to database:', [

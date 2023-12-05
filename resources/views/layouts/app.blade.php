@@ -18,6 +18,8 @@
     <!-- Scripts -->
     @wireUiScripts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+
 
 </head>
 <body class="font-sans antialiased">
@@ -54,5 +56,6 @@
 
 @livewireScripts
 @laravelViewsScripts('laravel-views')
+@livewire('livewire-ui-modal')
 </body>
 </html>

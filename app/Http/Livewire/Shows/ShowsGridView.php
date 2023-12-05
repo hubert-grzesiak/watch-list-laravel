@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Livewire\Shows;
 
+use App\Http\Livewire\Shows\Filters\ShowFilter;
 use App\Models\Show;
 use LaravelViews\Views\GridView;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,11 +13,9 @@ class ShowsGridView extends GridView
     public $cardComponent = 'livewire.shows.grid-view-item';
 
     public $searchBy = [
-        'name', // Name of the show
-        'description', // Description of the show
+        'title', // Name of the show
         'genre', // Genre of the show
         'rating', // Rating of the show
-        // Add more fields as necessary
     ];
 
     public function repository(): Builder
@@ -33,11 +32,23 @@ class ShowsGridView extends GridView
     public function card($model)
     {
         return [
+            'id' => $model->id,
             'image' => $model->image,
             'title' => $model->title,
             'description' => $model->description,
             'genre' => $model->genre,
             'rating' => $model->rating,
+            'year' => $model->year,
         ];
     }
+
+    /**
+     * Set filters
+     */
+//    protected function filters()
+//    {
+//        return [
+//            new ShowFilter,
+//        ];
+//    }
 }

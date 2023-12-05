@@ -29,11 +29,11 @@ You can customize all the html and css classes but YOU MUST KEEP THE BLADE AND L
     @include('laravel-views::components.toolbar.toolbar')
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 {{ $cols[$maxCols] }} gap-8 md:gap-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 {{ $cols[$maxCols] }} gap-8 md:gap-8">
     @foreach ($items as $item)
-      <div class="relative">
+      <div class="flex justify-center">
         @if ($this->hasBulkActions)
-          <div class="absolute top-0 lef-0 p-2">
+          <div class="flex justify-center">
             <x-lv-checkbox wire:model="selected" value="{{ $item->getKey() }}"/>
           </div>
         @endif
