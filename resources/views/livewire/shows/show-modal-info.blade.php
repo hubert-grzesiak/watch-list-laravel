@@ -50,12 +50,10 @@
                     @foreach ($show->platforms as $platform)
                         <p class="text-white bg-[#FFFFFF14] px-2 py-1 rounded-lg text-center w-fit text-[12px]">{{ $platform->name }}</p>
                     @endforeach
-
             @else
                 <p>Aktualnie niedostępne na żadnej platformie.</p>
             @endif
         </div>
-
         <div class="pt-[12px]">
             <button  class="hover:opacity-[0.88] text-[#5799EF] flex bg-[#FFFFFF14] px-[16px] py-[7px] w-full rounded-[4px] items-center justify-center gap-[2px]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ipc-icon ipc-icon--add ipc-btn__icon ipc-btn__icon--pre" viewBox="0 0 24 24" fill="currentColor" role="presentation">

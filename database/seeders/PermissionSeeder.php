@@ -28,6 +28,9 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'platforms.index']);
         Permission::create(['name' => 'platforms.manage']);
 
+        Permission::create(['name' => 'list.index']);
+        Permission::create(['name' => 'list.manage']);
+
         //TODO
         Permission::create(['name' => 'shows.index']);
         Permission::create(['name' => 'shows.manage']);
@@ -45,6 +48,9 @@ class PermissionSeeder extends Seeder
         $userRole->givePermissionTo('platforms.index');
         $userRole->givePermissionTo('platforms.manage');
 
+        $userRole->givePermissionTo('list.index');
+        $userRole->givePermissionTo('list.manage');
+
         $userRole->givePermissionTo('shows.index');
         $userRole->givePermissionTo('shows.manage');
 
@@ -52,6 +58,9 @@ class PermissionSeeder extends Seeder
         $userRole = Role::findByName(config('auth.roles.editor'));
         $userRole->givePermissionTo('categories.index');
         $userRole->givePermissionTo('categories.manage');
+
+        $userRole->givePermissionTo('list.index');
+        $userRole->givePermissionTo('list.manage');
 
         $userRole->givePermissionTo('shows.index');
         $userRole->givePermissionTo('shows.manage');
@@ -61,6 +70,8 @@ class PermissionSeeder extends Seeder
 
         // UŻYTKOWNIKA SYSTEMU
         $userRole = Role::findByName(config('auth.roles.user'));
-
+        $userRole->givePermissionTo('shows.index');
+        $userRole->givePermissionTo('list.index');
+        $userRole->givePermissionTo('list.manage');
     }
 }

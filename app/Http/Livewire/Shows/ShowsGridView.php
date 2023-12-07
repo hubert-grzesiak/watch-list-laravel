@@ -14,7 +14,6 @@ class ShowsGridView extends GridView
 
     public $searchBy = [
         'title', // Name of the show
-        'genre', // Genre of the show
         'rating', // Rating of the show
     ];
     public function sortableBy()

@@ -42,6 +42,11 @@
                             {{ __('translation.navigation.watchlist') }}
                         </x-nav-link>
                     @endcan
+                    @can('shows.index')
+                        <x-nav-link href="{{ route('shows.index') }}" :active="request()->routeIs('shows.index')" class="text-secondary">
+                            {{ __('translation.navigation.shows') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
