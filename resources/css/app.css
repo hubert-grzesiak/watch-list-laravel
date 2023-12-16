@@ -19,3 +19,14 @@
 .customTextShadow {
     -webkit-text-stroke: 0.5px black;
 }
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url('https://res.cloudinary.com/dev6yhoh3/image/upload/v1702668768/qyymppedwuum7dmwyzvj.jpg');
+    background-size: cover;
+    /*filter: blur(10px);*/
+    opacity: 0.5;
+}

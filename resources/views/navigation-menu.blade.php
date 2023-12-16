@@ -1,8 +1,9 @@
 <nav x-data="{ open: false }" class=" border-b">
     <!-- Primary Navigation Menu -->
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <img alt="bg" class="fixed top-0 translate-y-[-200px] z-[-10]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1700396444/yx8fpwhz49ulm4bspzg9.png"/>
-
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+{{--        <div class="relative bg-black w-full h-full">--}}
+{{--         <img alt="bg" class="fixed h-[100vh] w-full top-0 translate-y-[-200px] translate-x-[-150px] z-[-10]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1702668768/qyymppedwuum7dmwyzvj.jpg"/>--}}
+{{--        </div>--}}
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
