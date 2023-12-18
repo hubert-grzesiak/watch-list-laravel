@@ -11,12 +11,10 @@
             <li><a href="">Plan To Watch</a></li>
         </ul>
     </div>
-    <div class="flex justify-center items-center flex-col px-[24px] py-[48px]">
-            <div class="max-w-7xl w-full mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white shadow-xl sm:rounded-lg">
-                    <livewire:lists.lists-table-view />
+    <div class="flex justify-center items-center flex-col w-full">
+                <div class="bg-white/40 backdrop-blur-md sm:rounded-lg w-full">
+                    <livewire:lists.list-table-view />
                 </div>
-        </div>
     </div>
     <script src="{{ asset('js/script.js') }}"></script>
 </x-list-layout>

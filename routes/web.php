@@ -4,6 +4,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShowController;
+use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ListController;
@@ -65,4 +66,5 @@ Route::middleware([
     Route::resource('/shows', ShowController::class)->only([
         'index', 'create', 'edit'
     ]);
+
 });

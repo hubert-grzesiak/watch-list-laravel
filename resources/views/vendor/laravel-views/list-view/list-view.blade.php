@@ -4,16 +4,16 @@
     @include('laravel-views::components.toolbar.toolbar')
   </div>
 
-  <div>
+  <div class="w-full border">
     @foreach ($items as $item)
-      <div class="flex items-center border-b border-gray-200 ">
+      <div class="flex items-center border-b border-gray-200 w-full ">
         @if ($this->hasBulkActions)
-          <div class="h-full flex items-center pl-3 md:pl-4">
+          <div class="h-full flex items-center pl-3 md:pl-4 w-full">
             <x-lv-checkbox wire:model="selected" value="{{ $item->getKey() }}" />
           </div>
         @endif
-        <div class="py-2 px-3 md:px-4 flex-1">
-          <x-lv-dynamic-component :view="$itemComponent" :data="array_merge($this->data($item), ['actions' => $actionsByRow, 'model' => $item])" />
+        <div class="py-2 px-3 md:px-4 flex-1 w-full ">
+          <x-lv-dynamic-component class="w-full" :view="$itemComponent" :data="array_merge($this->data($item) , ['actions' => $actionsByRow, 'model' => $item])" />
         </div>
       </div>
     @endforeach

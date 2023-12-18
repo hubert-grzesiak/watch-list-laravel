@@ -42,6 +42,15 @@ class CategoriesTableView extends TableView
      *
      * @return array<string> Array of headers
      */
+//    public function headers(): array
+//    {
+//        return [
+//            Header::title(__('categories.attributes.name'))->sortBy('name'),
+//            Header::title(__('translation.attributes.created_at'))->sortBy('created_at'),
+//            Header::title(__('translation.attributes.updated_at'))->sortBy('updated_at'),
+//            Header::title(__('translation.attributes.deleted_at'))->sortBy('deleted_at'),
+//        ];
+//    }
     public function headers(): array
     {
         return [

@@ -42,6 +42,14 @@ class Show extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+
+    public function users()
+    {
+        // Replace 'user_show_progress' with the actual name of your pivot table
+        // Replace 'show_id' and 'user_id' with the actual foreign key names if they are different
+        return $this->belongsToMany(User::class, 'user_show_progress')
+            ->withPivot('current_episode', 'watched');
+    }
     public function platforms()
     {
         return $this->belongsToMany(Platform::class, 'show_platforms', 'show_id', 'platform_id');

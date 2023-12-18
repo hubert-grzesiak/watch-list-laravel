@@ -60,6 +60,13 @@ class User extends Authenticatable implements  MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+    // In User model
+    public function shows()
+    {
+        return $this->belongsToMany(Show::class, 'user_show_progress')
+        ->withPivot('current_episode', 'watched');
+    }
+
 
     public function isAdmin(): bool
     {

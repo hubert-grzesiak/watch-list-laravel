@@ -3,6 +3,8 @@ namespace App\Http\Livewire\Shows;
 
 use App\Http\Livewire\Shows\Filters\ShowFilter;
 use App\Models\Show;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use LaravelViews\Views\GridView;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Livewire\Shows\Actions\EditShowAction;
@@ -35,17 +37,60 @@ class ShowsGridView extends GridView
     }
     public function repository(): Builder
     {
-        // Adjust the query to fit the Show model
         return Show::query()
-            // Remove 'with(['title'])' if 'title' is not a relationship
-            // If you have relationships like 'categories', you can eager load them here
             ->when(request()->user()->can('manage', Show::class), function ($query) {
                 $query->withTrashed();
             });
     }
 
+    public function addToWatchlist($showId)
+    {
+        if (!Auth::check()) {
+            $this->emit('alert', 'You need to be logged in.');
+            return;
+        }
+
+        $userId = Auth::id();
+
+        // Check if the show is already in the watchlist
+        $exists = DB::table('user_show_progress')
+            ->where('user_id', $userId)
+            ->where('show_id', $showId)
+            ->exists();
+
+        if ($exists) {
+            // If it exists, remove it from the watchlist
+            DB::table('user_show_progress')
+                ->where('user_id', $userId)
+                ->where('show_id', $showId)
+                ->delete();
+
+            $this->emit('alert', 'Show removed from your watchlist.');
+        } else {
+            // If it doesn't exist, add it to the watchlist
+            DB::table('user_show_progress')->insert([
+                'user_id' => $userId,
+                'show_id' => $showId,
+                'watched' => false,
+                'current_episode' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            $this->emit('alert', 'Show added to your watchlist.');
+        }
+
+        // Optional: Refresh the component to reflect the change
+    }
+
+
     public function card($model)
     {
+        $userId = Auth::id();
+        $isInWatchlist = DB::table('user_show_progress')
+            ->where('user_id', $userId)
+            ->where('show_id', $model->id)
+            ->exists();
 
         return [
             'id' => $model->id,
@@ -55,6 +100,7 @@ class ShowsGridView extends GridView
             'genre' => $model->genre,
             'rating' => $model->rating,
             'year' => $model->year,
+            'isInWatchlist' => $isInWatchlist,
         ];
     }
 

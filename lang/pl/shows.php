@@ -13,6 +13,7 @@ return [
         'platforms' => 'Platformy streamingowe',
         'type' => 'Typ',
         'categories' => 'Kategorie',
+        'current_episode' => 'Postęp'
     ],
     'filters' => [
         'genres' => 'Kategoria filmu lub serialu',

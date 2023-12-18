@@ -16,14 +16,12 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('show_id');
-            $table->unsignedBigInteger('state_id');
             $table->boolean('watched')->default(false);
             $table->integer('current_episode')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('show_id')->references('id')->on('shows');
-            $table->foreign('state_id')->references('id')->on('states');
         });
 
     }

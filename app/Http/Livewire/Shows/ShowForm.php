@@ -91,7 +91,6 @@ class ShowForm extends Component
     public function mount(Show $show, Bool $editMode)
     {
         $this->show = $show;
-//        $this->categoriesIds = $this->show->categories->toArray();
         $this->categoriesIds = $this->show->categories->toArray();
         $this->platformsIds = $this->show->platforms->toArray();
         $this->imageChange();

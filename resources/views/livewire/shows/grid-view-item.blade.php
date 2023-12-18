@@ -16,6 +16,7 @@
     'numberOfEpisodes' => null, // Nullable for movies
     'platform' => '',
     'type' => '',
+    'isInWatchlist' =>'',
 ])
 <div class="w-[185.33px] h-[458px] bg-[#1a1a1a] rounded-b-[4px] relative">
     @if (count($actions))
@@ -45,12 +46,26 @@
             <p class="text-white text-[16px] line-clamp-2">{{$title}}</p>
         </div>
         <div class="pt-[12px]">
-            <button  class="text-[#5799EF] flex bg-[#FFFFFF14] px-[16px] py-[7px] w-full rounded-[4px] items-center justify-center gap-[2px]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ipc-icon ipc-icon--add ipc-btn__icon ipc-btn__icon--pre" viewBox="0 0 24 24" fill="currentColor" role="presentation">
-                    <path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5h-5c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"/>
-                </svg>
+            <button
+                wire:click="addToWatchlist({{ $model->id }})"
+                class="text-[#5799EF] flex bg-[#FFFFFF14] px-[16px] py-[7px] w-full rounded-[4px] items-center justify-center gap-[2px] transition-transform transform-gpu active:scale-95"
+            >
+                @if($isInWatchlist)
+                    <!-- SVG for 'In Watchlist' (e.g., a minus icon) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ipc-icon ipc-icon--remove ipc-btn__icon ipc-btn__icon--pre" viewBox="0 0 24 24" fill="currentColor" role="presentation">
+                        <!-- SVG path for minus icon -->
+                        <path d="M19 13H5c-0.55 0-1-0.45-1-1s0.45-1 1-1h14c0.55 0 1 0.45 1 1s-0.45 1-1 1z"/>
+                    </svg>
+                @else
+                    <!-- SVG for 'Add to Watchlist' (e.g., a plus icon) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ipc-icon ipc-icon--add ipc-btn__icon ipc-btn__icon--pre" viewBox="0 0 24 24" fill="currentColor" role="presentation">
+                        <!-- SVG path for plus icon -->
+                        <path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5h-5c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"/>
+                    </svg>
+                @endif
                 <p>Watchlist</p>
             </button>
+
         </div>
         <div class="pt-[8px] flex justify-between items-center text-white">
             <div class="flex gap-1">
@@ -62,11 +77,21 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ipc-icon ipc-icon--clear" viewBox="0 0 24 24" fill="currentColor" role="presentation"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"></path></svg>
                 </button>
 
-                <button class="hover:opacity-[0.88] text-[#5799EF] flex bg-[#FFFFFF14] px-[16px] py-[7px] w-full rounded-[4px] items-center justify-center gap-[2px]">
+                <button wire:click="addToWatchlist({{ $model->id }})" class="text-[#5799EF] flex bg-[#FFFFFF14] px-[16px] py-[7px] w-full rounded-[4px] items-center justify-center gap-[2px]">
+                    @if($isInWatchlist)
+                        <!-- SVG for 'In Watchlist' (e.g., a minus icon) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ipc-icon ipc-icon--remove ipc-btn__icon ipc-btn__icon--pre" viewBox="0 0 24 24" fill="currentColor" role="presentation">
+                            <!-- SVG path for minus icon -->
+                            <path d="M19 13H5c-0.55 0-1-0.45-1-1s0.45-1 1-1h14c0.55 0 1 0.45 1 1s-0.45 1-1 1z"/>
+                        </svg>
+                    @else
+                        <!-- SVG for 'Add to Watchlist' (e.g., a plus icon) -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ipc-icon ipc-icon--add ipc-btn__icon ipc-btn__icon--pre" viewBox="0 0 24 24" fill="currentColor" role="presentation">
+                            <!-- SVG path for plus icon -->
                             <path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5h-5c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"/>
                         </svg>
-                        <p>Watchlist</p>
+                    @endif
+                    <p>Watchlist</p>
                 </button>
             </dialog>
             <button class="p-[12px]" wire:click="$emit('openModal', 'shows.show-modal-info', {{ json_encode(['id' => $model->id]) }})">
@@ -77,5 +102,3 @@
 
     </div>
 </div>
-
-
