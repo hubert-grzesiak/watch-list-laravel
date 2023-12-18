@@ -17,8 +17,13 @@
     'platform' => '',
     'type' => '',
 ])
+<div class="w-[185.33px] h-[458px] bg-[#1a1a1a] rounded-b-[4px] relative">
+    @if (count($actions))
+        <div class="flex justify-end items-center absolute z-10 top-0 right-0 hover:bg-white rounded-full">
+            <x-lv-actions.drop-down :actions="$actions" :model="$model"/>
+        </div>
+    @endif
 
-<div class="w-[185.33px] h-[458px] bg-[#1a1a1a] rounded-b-[4px]">
     <!-- Image and title display -->
     <div class="relative h-[274.27px] overflow-hidden">
         @if ($hasDefaultAction)
@@ -64,7 +69,7 @@
                         <p>Watchlist</p>
                 </button>
             </dialog>
-            <button class="p-[12px]" wire:click="$emit('openModal', 'show-modal-info', {{ json_encode(['id' => $model->id]) }})">
+            <button class="p-[12px]" wire:click="$emit('openModal', 'shows.show-modal-info', {{ json_encode(['id' => $model->id]) }})">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="ipc-icon ipc-icon--info" viewBox="0 0 24 24" fill="currentColor" role="presentation"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path></svg>
             </button>
 

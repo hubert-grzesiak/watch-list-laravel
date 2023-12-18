@@ -171,6 +171,10 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        /*
+         * Platform repository provider
+         */
+//        App\Providers\PlatformRepositoryProvider::class,
     ])->toArray(),
 
     /*
@@ -185,8 +189,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
-    ])->toArray(),
+//        'PlatformRepository' => App\Facades\PlatformRepository::class,
+        ])->toArray(),
 
     'log_db_query' => env('LOG_DB_QUERY', false)
 

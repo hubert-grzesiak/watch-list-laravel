@@ -20,8 +20,8 @@
 
         <hr class="my-2">
         <div class="flex justify-end pt-2">
-            <x-wireui-button href="{{ route('platforms.index') }}" secondary class="mr-2 bg-accent text-primary" label="{{ __('translation.back') }}" />
-            <x-wireui-button type="submit" primary label="{{ __('translation.save') }}" spinner class="bg-accent text-primary" />
+            <x-wireui-button href="{{ route('platforms.index') }}" primary class="mr-2 bg-accent text-black" label="{{ __('translation.back') }}" />
+            <x-wireui-button type="submit" primary label="{{ __('translation.save') }}" spinner class="bg-accent text-black" />
         </div>
 
     </form>

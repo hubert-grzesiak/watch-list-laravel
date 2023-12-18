@@ -26,7 +26,6 @@ class Show extends Model
         'rating',
         'year',
         'numberOfEpisodes',
-        'platform',
         'type',
     ];
 
@@ -71,7 +70,7 @@ class Show extends Model
                 if ($value === null) {
                     return null;
                 }
-                return config('filesystems.images_dir') . '' . $value;
+                return $value;
             },
         );
     }
@@ -100,4 +99,11 @@ class Show extends Model
         return $this->image !== null
             && Storage::disk('public')->exists($this->image);
     }
+
+    /**
+     * Wylicza koszt zakup zadanej ilości produktu
+     *
+     * @param integer $qty
+     * @return float
+     */
 }

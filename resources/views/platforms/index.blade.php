@@ -13,7 +13,7 @@
                         <x-wireui-button primary
                                   label="{{ __('platforms.actions.create') }}"
                                   href="{{ route('platforms.create') }}"
-                                  class="justify-self-end bg-accent text-primary focus:outline-primary focus:border-none" />
+                                  class="justify-self-end bg-accent focus:outline-primary focus:border-none" />
                     @endcan
                 </div>
                 <livewire:platforms.platforms-table-view />

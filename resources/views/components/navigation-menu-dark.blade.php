@@ -1,52 +1,52 @@
-@props(['theme' => 'light'])
+@props(['theme' => 'dark'])
 
-<nav x-data="{ open: false }" class="{{ $theme === 'dark' ? 'bg-dark text-white' : 'bg-light text-dark' }} border-b">
+<nav x-data="{ open: false }" class="{{ $theme === 'dark' ? 'bg-dark text-white' : 'bg-light text-dark' }} sticky top-0 z-[20]">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-{{--        <div class="relative bg-black w-full h-full">--}}
-{{--         <img alt="bg" class="fixed h-[100vh] w-full top-0 translate-y-[-200px] translate-x-[-150px] z-[-10]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1702668768/qyymppedwuum7dmwyzvj.jpg"/>--}}
-{{--        </div>--}}
+        {{--        <div class="relative bg-black w-full h-full">--}}
+        {{--         <img alt="bg" class="fixed h-[100vh] w-full top-0 translate-y-[-200px] translate-x-[-150px] z-[-10]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1702668768/qyymppedwuum7dmwyzvj.jpg"/>--}}
+        {{--        </div>--}}
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img alt='bg' class="w-[67px] h-[60px]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1700397552/pqfmcgur0y5ywzakp1vb.svg">
+                        <img alt='bg' class="w-[67px] h-[60px]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1702847845/watch-list-high-resolution-logo-white-transparent_axbxer.svg">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-{{--                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"  class="text-secondary">--}}
-{{--                        {{ __('Dashboard') }}--}}
-{{--                    </x-nav-link>--}}
+                    {{--                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"  class="text-secondary">--}}
+                    {{--                        {{ __('Dashboard') }}--}}
+                    {{--                    </x-nav-link>--}}
                     @can('users.index')
-                        <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')" class="text-secondary">
+                        <x-nav-link :theme="'dark'" href="{{ route('users.index') }}" :active="request()->routeIs('users.index')" class="text-secondary">
                             {{ __('translation.navigation.users') }}
                         </x-nav-link>
                     @endcan
                     @can('users.index')
-                        <x-nav-link href="log-viewer" :active="request()->is('log-viewer*')" class="text-secondary">
+                        <x-nav-link :theme="'dark'" href="log-viewer" :active="request()->is('log-viewer*')" class="text-secondary">
                             Logi
                         </x-nav-link>
                     @endcan
                     @can('categories.index')
-                        <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')" class="text-secondary">
+                        <x-nav-link :theme="'dark'" href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')" class="text-secondary">
                             {{ __('translation.navigation.categories') }}
                         </x-nav-link>
                     @endcan
                     @can('platforms.index')
-                        <x-nav-link href="{{ route('platforms.index') }}" :active="request()->routeIs('platforms.index')" class="text-secondary">
+                        <x-nav-link :theme="'dark'" href="{{ route('platforms.index') }}" :active="request()->routeIs('platforms.index')" class="text-secondary">
                             {{ __('translation.navigation.platforms') }}
                         </x-nav-link>
                     @endcan
                     @can('list.index')
-                        <x-nav-link href="{{ route('list.index') }}" :active="request()->routeIs('list.index')" class="text-secondary">
+                        <x-nav-link :theme="'dark'" href="{{ route('list.index') }}" :active="request()->routeIs('list.index')" class="text-secondary">
                             {{ __('translation.navigation.watchlist') }}
                         </x-nav-link>
                     @endcan
                     @can('shows.index')
-                        <x-nav-link href="{{ route('shows.index') }}" :active="request()->routeIs('shows.index')" class="text-secondary">
+                        <x-nav-link :theme="'dark'" href="{{ route('shows.index') }}" :active="request()->routeIs('shows.index')" class="text-secondary">
                             {{ __('translation.navigation.shows') }}
                         </x-nav-link>
                     @endcan
@@ -172,9 +172,9 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-{{--            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
-{{--                {{ __('Dashboard') }}--}}
-{{--            </x-responsive-nav-link>--}}
+            {{--            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
+            {{--                {{ __('Dashboard') }}--}}
+            {{--            </x-responsive-nav-link>--}}
             @can('users.index')
                 <x-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                     {{ __('translation.navigation.users') }}

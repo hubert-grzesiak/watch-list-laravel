@@ -48,15 +48,21 @@ Route::middleware([
         'index', 'create', 'edit'
     ]);
 
+    Route::get('async/categories', [CategoryController::class, 'async'])->name('async.categories');
+
+
     Route::resource('platforms', PlatformController::class)->only([
         'index', 'create', 'edit'
     ]);
+
+    Route::get('async/platforms', [PlatformController::class, 'async'])->name('async.platforms');
+
 
     Route::resource('list', ListController::class)->only([
         'index',
     ]);
 
-    Route::resource('shows', ShowController::class)->only([
+    Route::resource('/shows', ShowController::class)->only([
         'index', 'create', 'edit'
     ]);
 });

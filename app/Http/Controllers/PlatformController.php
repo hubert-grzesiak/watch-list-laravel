@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\PlatformRepository;
 use App\Models\Platform;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class PlatformController extends Controller
 {
+    protected $platformRepository;
+// Dependency injection via constructor
+    public function __construct(PlatformRepository $platformRepository)
+    {
+        $this->platformRepository = $platformRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +26,28 @@ class PlatformController extends Controller
 
         return view(
             'platforms.index'
+        );
+    }
+
+
+    /**
+     * Return list of resources
+     *
+     * @param Request $request
+     * @return void
+     */
+//    public function async(Request $request)
+//    {
+//        return $this->platformRepository->async(
+//            $request->search,
+//            $request->input('selected', [])
+//        );
+//    }
+    public function async(Request $request, PlatformRepository $repository)
+    {
+        return $repository->select(
+            $request->search,
+            $request->selected
         );
     }
 

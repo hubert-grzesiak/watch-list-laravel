@@ -36,7 +36,7 @@ class SoftDeletesPlatformAction extends Action
         $view->dialog()->confirm([
             'title' => __('platforms.dialogs.soft_deletes.title'),
             'description' => __('platforms.dialogs.soft_deletes.description', [
-                'name' => $model->name
+                'title' => $model->title
             ]),
             'icon' => 'question',
             'iconColor' => 'text-red-500',

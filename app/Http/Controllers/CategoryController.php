@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\CategoryRepository;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,21 @@ class CategoryController extends Controller
             'categories.index'
         );
     }
+
+    /**
+* Return list of resources
+*
+* @param Request $request
+* @return void
+*/
+    public function async(Request $request, CategoryRepository $repository)
+    {
+        return $repository->select(
+            $request->search,
+            $request->selected
+        );
+    }
+
 
     /**
      * Show the form for creating a new resource.

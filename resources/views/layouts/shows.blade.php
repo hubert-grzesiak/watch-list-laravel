@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+@props(['theme' => 'light'])
+
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -6,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Watch Lists') }}</title>
-{{--    <title> @yield('title') </title>--}}
+    {{--    <title> @yield('title') </title>--}}
     <!-- Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -29,25 +31,17 @@
 <x-wireui-dialog />
 
 <div class="relative flex flex-col justify-between h-[100vh]">
-    @livewire('navigation-menu')
+    <x-navigation-menu-dark :theme="'dark'" />
 
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header class="bg-white/70 max-h-[73px] h-full w-full bg-gray-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 border border-gray-100 shadow w-full">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-    @endif
     <!-- Page Content -->
     <main class="">
         {{ $slot }}
     </main>
     <footer class="flex w-full justify-center shadow">
-        <ul class="flex w-full gap-4 py-5 h-full w-full bg-white bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100
+        <ul class="flex w-full gap-4 py-5 h-full w-full bg-[#1a1a1a] bg-clip-padding text-white
   justify-center">
             <li><a href="movies">Movies</a></li>
-            <li><a href="series">Series</a></li>
+            <li><a href="shows?sortOrder=asc&filters[show-filter]=series">Series</a></li>
             <li><a href="podcasts">Podcasts</a></li>
         </ul>
     </footer>

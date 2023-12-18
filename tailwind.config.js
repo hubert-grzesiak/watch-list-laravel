@@ -26,11 +26,11 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                // 'text': '#1a1417',
-                // 'background': '#ffffff',
-                // // 'primary': '#fce7d3',
-                // 'secondary': '#551E19',
-                // 'accent': '#C56E33',
+                'text': '#1a1417',
+                'background': '#ffffff',
+                'primary': '#fce7d3',
+                'secondary': '#551E19',
+                'accent': '#f8e0c9',
             },
 
         },

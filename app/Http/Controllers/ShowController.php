@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Show;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class ShowController extends Controller
     {
         $this->authorize('viewAny', Show::class);
         return view(
-            'shows.index'
+            'shows.index',
         );
     }
 

@@ -1,11 +1,10 @@
-@props(['theme' => 'light'])
 
-<nav x-data="{ open: false }" class="{{ $theme === 'dark' ? 'bg-dark text-white' : 'bg-light text-dark' }} border-b">
+<nav x-data="{ open: false }" class=" border-b">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-{{--        <div class="relative bg-black w-full h-full">--}}
-{{--         <img alt="bg" class="fixed h-[100vh] w-full top-0 translate-y-[-200px] translate-x-[-150px] z-[-10]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1702668768/qyymppedwuum7dmwyzvj.jpg"/>--}}
-{{--        </div>--}}
+        {{--        <div class="relative bg-black w-full h-full">--}}
+        {{--         <img alt="bg" class="fixed h-[100vh] w-full top-0 translate-y-[-200px] translate-x-[-150px] z-[-10]" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1702668768/qyymppedwuum7dmwyzvj.jpg"/>--}}
+        {{--        </div>--}}
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -17,9 +16,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-{{--                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"  class="text-secondary">--}}
-{{--                        {{ __('Dashboard') }}--}}
-{{--                    </x-nav-link>--}}
+                    {{--                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"  class="text-secondary">--}}
+                    {{--                        {{ __('Dashboard') }}--}}
+                    {{--                    </x-nav-link>--}}
                     @can('users.index')
                         <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')" class="text-secondary">
                             {{ __('translation.navigation.users') }}
@@ -172,9 +171,9 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-{{--            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
-{{--                {{ __('Dashboard') }}--}}
-{{--            </x-responsive-nav-link>--}}
+            {{--            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
+            {{--                {{ __('Dashboard') }}--}}
+            {{--            </x-responsive-nav-link>--}}
             @can('users.index')
                 <x-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                     {{ __('translation.navigation.users') }}

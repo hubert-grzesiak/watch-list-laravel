@@ -1,9 +1,9 @@
 <!-- resources/views/livewire/shows/show-modal-info.blade.php -->
-<div class="bg-[#1f1f1f] shadow-md p-[24px] max-w-[520px] max-h-[500px] h-full m-auto rounded-md">
+<div class="top-0 bg-[#1f1f1f] shadow-md p-[24px] max-w-[520px] max-h-[500px] h-full m-auto rounded-md">
     <!-- Check if the show is loaded -->
     @if($show)
         <div class="flex gap-[12px] mb-[12px]">
-            <img src="{{ $show->image }}" alt="{{ $show->title }}" class="w-[72px] h-[106px]"/>
+            <img src="{{ str_contains($show->image, 'http') ? $show->image : $show->imageUrl() }}" alt="{{ $show->title }}" class="w-[72px] h-[106px]"/>
             <div>
                 <h3 class="text-[24px] text-white">{{ $show->title }}</h3>
                 <div class="flex gap-1">
