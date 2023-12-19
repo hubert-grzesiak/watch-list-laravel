@@ -34,6 +34,7 @@ class PermissionSeeder extends Seeder
         //TODO
         Permission::create(['name' => 'shows.index']);
         Permission::create(['name' => 'shows.manage']);
+        Permission::create(['name' => 'shows.update_own']);
 
 
         $userRole = Role::findByName(config('auth.roles.admin'));
@@ -53,6 +54,7 @@ class PermissionSeeder extends Seeder
 
         $userRole->givePermissionTo('shows.index');
         $userRole->givePermissionTo('shows.manage');
+        $userRole->givePermissionTo('shows.update_own');
 
         // EDYTORA FILMÓW
         $userRole = Role::findByName(config('auth.roles.editor'));
@@ -64,6 +66,7 @@ class PermissionSeeder extends Seeder
 
         $userRole->givePermissionTo('shows.index');
         $userRole->givePermissionTo('shows.manage');
+        $userRole->givePermissionTo('shows.update_own');
 
         $userRole->givePermissionTo('platforms.index');
 
@@ -71,6 +74,7 @@ class PermissionSeeder extends Seeder
         // UŻYTKOWNIKA SYSTEMU
         $userRole = Role::findByName(config('auth.roles.user'));
         $userRole->givePermissionTo('shows.index');
+        $userRole->givePermissionTo('shows.update_own');
         $userRole->givePermissionTo('list.index');
         $userRole->givePermissionTo('list.manage');
     }

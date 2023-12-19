@@ -2,6 +2,12 @@
 
 namespace App\Http\Livewire\Lists;
 
+use App\Http\Livewire\Categories\Actions\EditCategoryAction;
+use App\Http\Livewire\Categories\Actions\RestoreCategoryAction;
+use App\Http\Livewire\Categories\Actions\SoftDeletesCategoryAction;
+use App\Http\Livewire\Lists\Actions\DecrementNumberOfWatchedEpisodesAction;
+use App\Http\Livewire\Lists\Actions\IncrementNumberOfWatchedEpisodesAction;
+use App\Http\Livewire\Shows\Filters\ShowFilter;
 use App\Models\Category;
 use App\Models\Show;
 use App\Models\User;
@@ -36,7 +42,7 @@ class ListTableView extends TableView
             Header::title(__('shows.attributes.image')),
             Header::title(__('shows.attributes.title'))->sortBy('title'),
             Header::title(__('shows.attributes.type'))->sortBy('type'),
-            Header::title(__('shows.attributes.numberOfEpisodes'))->sortBy('numberOfEpisodes'),
+//            Header::title(__('shows.attributes.numberOfEpisodes'))->sortBy('numberOfEpisodes'),
             Header::title(__('shows.attributes.current_episode'))->sortBy('current_episode'),
 
         ];
@@ -53,14 +59,11 @@ class ListTableView extends TableView
         $watched = $pivotData ? $pivotData->watched : null;
 
         return [
-            // Assume 'image' is a direct attribute of the Show model
             'id' => self::$counter,
             $model->image ? '<img class="w-[120px] h-[120px] object-cover" src="' . htmlspecialchars($model->image) . '" alt="' . htmlspecialchars($model->title) . '" />' : '',
             'title' => $model->title,
             'type' => $model->type,
-            'numberOfEpisodes' => $model->numberOfEpisodes,
-            'current_episode' => $current_episode,
-//            'watched' => $watched,
+            'current_episode' => $current_episode . ' / ' . $model->numberOfEpisodes,
         ];
     }
     public $searchBy = [
@@ -69,9 +72,21 @@ class ListTableView extends TableView
     public function sortableBy()
     {
         return [
-//            'Year' => 'year',
-//            'Rating' => 'rating',
-//            'NumberOfEpisodes' => 'numberOfEpisodes',
+            'Rating' => 'rating',
+            'NumberOfEpisodes' => 'numberOfEpisodes',
+        ];
+    }
+    protected function filters()
+    {
+        return [
+            new ShowFilter,
+        ];
+    }
+    protected function actionsByRow()
+    {
+        return [
+            new DecrementNumberOfWatchedEpisodesAction(),
+           new IncrementNumberOfWatchedEpisodesAction(),
         ];
     }
     protected $paginate = 20;

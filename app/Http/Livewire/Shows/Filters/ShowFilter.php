@@ -8,34 +8,43 @@ class ShowFilter extends Filter
 {
     public $title = 'Filter Shows';
 
-    /**
-     * Modify the current query when the filter is used
-     *
-     * @param Builder $query Current query
-     * @param $value Value selected by the user
-     * @return Builder Query modified
-     */
     public function apply(Builder $query, $value, $request): Builder
     {
-        if ($value == 'movie') {
-            // If the value is 'movie', filter results to only include movies
-            return $query->where('type', 'movie');
-        } else {
-            // If the value is not 'movie', assuming it should be 'series' based on your context
-            return $query->where('type', 'series');
+        $userId = auth()->id();
+
+        switch ($value) {
+            case 'movie':
+                return $query->where('type', 'movie');
+            case 'series':
+                return $query->where('type', 'series');
+            case 'watching':
+                return $query->whereHas('users', function ($subQuery) use ($userId) {
+                    $subQuery->where('user_id', $userId)
+                        ->whereRaw('current_episode > 0 AND current_episode < numberOfEpisodes');
+                });
+            case 'completed':
+                return $query->whereHas('users', function ($subQuery) use ($userId) {
+                    $subQuery->where('user_id', $userId)
+                        ->whereColumn('current_episode', 'numberOfEpisodes');
+                });
+            case 'plan_to_watch':
+                return $query->whereHas('users', function ($subQuery) use ($userId) {
+                    $subQuery->where('user_id', $userId)
+                        ->where('current_episode', 0);
+                });
         }
+
+        return $query;
     }
 
-    /**
-     * Defines the title and value for each option
-     *
-     * @return Array associative array with the title and values
-     */
     public function options(): array
     {
         return [
-                'Movies' => 'movie',
-                'Series' => 'series',
+            'Movies' => 'movie',
+            'Series' => 'series',
+            'Currently Watching' => 'watching',
+            'Completed' => 'completed',
+            'Plan To Watch' => 'plan_to_watch',
         ];
     }
 }

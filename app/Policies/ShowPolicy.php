@@ -56,6 +56,13 @@ class ShowPolicy
             && $user->can('shows.manage');
     }
 
+    public function update_own(User $user, Show $show)
+    {
+        return $show->deleted_at === null
+            && $user->can('shows.update_own');
+    }
+
+
     /**
      * Determine whether the user can delete the model.
      *

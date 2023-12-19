@@ -20,6 +20,7 @@ return [
     ],
     'actions' => [
         'create' => 'Dodaj show',
+        'increment' => 'Inkrementuj liczbe obejrzanych odcinków',
     ],
     'labels' => [
         'create_form_title' => 'Tworzenie nowego show',
@@ -38,6 +39,11 @@ return [
         ]
     ],
     'dialogs' => [
+        'soft_deletes' => [
+            'title' => 'Usuwanie show',
+            'description' => 'Czy na pewno usunąć show :title',
+        ],
+
         'image_delete' => [
             'soft_deletes' => [
                 'title' => 'Usuwanie show',

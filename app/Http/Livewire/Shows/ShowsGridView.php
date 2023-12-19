@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Livewire\Shows;
 
+use App\Http\Livewire\Filters\SoftDeletedFilter;
 use App\Http\Livewire\Shows\Filters\ShowFilter;
 use App\Models\Show;
 use Illuminate\Support\Facades\Auth;
@@ -109,9 +110,15 @@ class ShowsGridView extends GridView
      */
     protected function filters()
     {
-        return [
+        $filters = [
             new ShowFilter,
         ];
+
+        if (request()->user()->can('manage', Show::class)) {
+            $filters[] = new SoftDeletedFilter;
+        }
+
+        return $filters;
     }
 
     /** Actions by item */
