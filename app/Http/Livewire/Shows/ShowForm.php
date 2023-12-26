@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Shows;
 
+use App\Jobs\SendNewEpisodeEmail;
 use App\Models\Category;
 use App\Models\Platform;
 use App\Models\Show;
@@ -129,12 +130,19 @@ class ShowForm extends Component
 
         $image = $this->image;
 
-        DB::transaction(function () use ($show, $categoriesIds, $platformsIds, $image) {
+        $originalNumberOfEpisodes = $show->getOriginal('numberOfEpisodes');
+        $newNumberOfEpisodes = $this->show->numberOfEpisodes;
+
+        DB::transaction(function () use ($show, $categoriesIds, $platformsIds, $image, $originalNumberOfEpisodes, $newNumberOfEpisodes) {
             $show->save();
             if ($image !== null) {
                 $show->image = $show->id
                     . '.' . $this->image->getClientOriginalExtension();
                 $show->save();
+            }
+            if ($newNumberOfEpisodes > $originalNumberOfEpisodes) {
+                // Wywołaj job tylko jeśli liczba odcinków się zwiększyła
+                SendNewEpisodeEmail::dispatch($show);
             }
             $show->categories()->sync($categoriesIds);
             $show->platforms()->sync($platformsIds);
@@ -158,7 +166,7 @@ class ShowForm extends Component
         );
         $this->editMode = true;
         $this->imageChange();
-        $this->redirect('/shows');
+        $this->redirect('/');
     }
 
     /**

@@ -4,6 +4,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShowController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ListController;
@@ -21,6 +22,11 @@ use App\Http\Controllers\NewsletterController;
 */
 
 Route::get('/', [ShowController::class, 'index'])->name('shows.index');
+Route::get('/testroute', function(){
+    $name='Hubert';
+
+    Mail::to('hubertgrzesiak.dev@gmail.com')->send(new \App\Mail\NewEpisodeAlert($name));
+});
 
 // Add Subscriber email
 Route::post('/add-subscriber-email', [NewsletterController::class, 'addSubscriber']);

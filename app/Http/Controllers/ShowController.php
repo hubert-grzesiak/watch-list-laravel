@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Jobs\SendNewEpisodeEmail;
 use App\Models\Show;
 use Illuminate\Http\Request;
 
