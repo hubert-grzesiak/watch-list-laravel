@@ -15,7 +15,7 @@ class ShowController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('viewAny', Show::class);
+//        $this->authorize('viewAny', Show::class);
         return view(
             'shows.index',
         );

@@ -12,7 +12,7 @@
         </ul>
     </div>
     <div class="flex justify-center items-center flex-col w-full">
-                <div class="bg-white/40 backdrop-blur-md sm:rounded-lg w-full">
+                <div class="bg-white/40 backdrop-blur-md sm:rounded-lg w-[90%]">
                     <livewire:lists.list-table-view />
                 </div>
     </div>

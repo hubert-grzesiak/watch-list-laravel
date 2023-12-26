@@ -43,7 +43,7 @@ class ListTableView extends TableView
             Header::title(__('shows.attributes.title'))->sortBy('title'),
             Header::title(__('shows.attributes.type'))->sortBy('type'),
 //            Header::title(__('shows.attributes.numberOfEpisodes'))->sortBy('numberOfEpisodes'),
-            Header::title(__('shows.attributes.current_episode'))->sortBy('current_episode'),
+            Header::title(__('shows.attributes.current_episode')),
 
         ];
     }

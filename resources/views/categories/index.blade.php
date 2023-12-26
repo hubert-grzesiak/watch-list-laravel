@@ -13,7 +13,7 @@
                         <x-wireui-button primary
                                   label="{{ __('categories.actions.create') }}"
                                   href="{{ route('categories.create') }}"
-                                  class="justify-self-end bg-accent text-primary focus:outline-primary focus:border-none" />
+                                         class="justify-self-end bg-accent focus:outline-primary focus:border-none" />
                     @endcan
                 </div>
                 <livewire:categories.categories-table-view />

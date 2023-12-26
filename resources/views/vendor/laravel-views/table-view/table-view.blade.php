@@ -26,7 +26,8 @@ UI components used:
   @else
     {{-- Empty data message --}}
     <div class="flex justify-center items-center p-4">
-      <h3>{{ __('searching.no_items') }}</h3>
+{{--      <h3>{{ __('searching.no_items') }}</h3>--}}
+        <img alt="no shows" src="https://res.cloudinary.com/dev6yhoh3/image/upload/v1703369259/DALL_E_2023-12-23_23.07.11_-_An_image_featuring_a_film_slate_in_the_center_with_the_words_No_shows_yet_please_add_something_to_your_list_written_on_it._The_background_is_simp_fm5yzh.png" class="w-[250px] h-[250px] rounded-full mt-5 round-image-container"/>
     </div>
   @endif
 

@@ -4,10 +4,10 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\PlatformController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShowController;
-use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\NewsletterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +20,16 @@ use App\Http\Controllers\ListController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ShowController::class, 'index'])->name('shows.index');
+
+// Add Subscriber email
+Route::post('/add-subscriber-email', [NewsletterController::class, 'addSubscriber']);
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
     Route::name('users.')->prefix('users')->group(function () {
         Route::get('', [UserController::class, 'index'])
@@ -63,8 +61,6 @@ Route::middleware([
         'index',
     ]);
 
-    Route::resource('/shows', ShowController::class)->only([
-        'index', 'create', 'edit'
-    ]);
+    Route::resource('shows', ShowController::class)->only(['create', 'edit']);
 
 });

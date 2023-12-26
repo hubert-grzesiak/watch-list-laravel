@@ -39,7 +39,7 @@ class ShowsGridView extends GridView
     public function repository(): Builder
     {
         return Show::query()
-            ->when(request()->user()->can('manage', Show::class), function ($query) {
+            ->when(auth()->check() && auth()->user()->can('manage', Show::class), function ($query) {
                 $query->withTrashed();
             });
     }
@@ -47,8 +47,7 @@ class ShowsGridView extends GridView
     public function addToWatchlist($showId)
     {
         if (!Auth::check()) {
-            $this->emit('alert', 'You need to be logged in.');
-            return;
+            return redirect()->route('login');
         }
 
         $userId = Auth::id();
@@ -80,8 +79,6 @@ class ShowsGridView extends GridView
 
             $this->emit('alert', 'Show added to your watchlist.');
         }
-
-        // Optional: Refresh the component to reflect the change
     }
 
 
@@ -114,7 +111,7 @@ class ShowsGridView extends GridView
             new ShowFilter,
         ];
 
-        if (request()->user()->can('manage', Show::class)) {
+        if (auth()->check() && auth()->user()->can('manage', Show::class)) {
             $filters[] = new SoftDeletedFilter;
         }
 
@@ -124,7 +121,7 @@ class ShowsGridView extends GridView
     /** Actions by item */
     protected function actionsByRow()
     {
-        if (request()->user()->can('manage', Show::class)) {
+        if (auth()->check() && auth()->user()->can('manage', Show::class)) {
             return [
                 new EditShowAction('shows.edit', __('translation.actions.edit')),
                 new SoftDeletesShowAction(),

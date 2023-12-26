@@ -43,13 +43,12 @@
     <main class="">
         {{ $slot }}
     </main>
-    <footer class="flex w-full justify-center shadow">
-        <ul class="flex w-full gap-4 py-5 h-full w-full bg-white bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 border border-gray-100
-  justify-center">
-            <li><a href="movies">Movies</a></li>
-            <li><a href="series">Series</a></li>
-            <li><a href="podcasts">Podcasts</a></li>
-        </ul>
+    <footer class="flex w-full justify-center shadow py-10 gap-[12px] items-end">
+        <div class="flex flex-col gap-2">
+        <label for="subscriber_email" class="">Subscribe to our newsletter</label>
+        <input type="email" name="subscriber_email" id="subscriber_email" placeholder="Enter email.." required class="rounded px-6 py-2 w-[250px]">
+        </div>
+        <button onclick="addSubscriber();" class="bg-[#F8E0C9] px-6 py-[9px] rounded transition-transform transform-gpu active:scale-95">Subscribe</button>
     </footer>
 </div>
 

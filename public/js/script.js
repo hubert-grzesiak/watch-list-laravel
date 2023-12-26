@@ -20,3 +20,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function addSubscriber() {
+    var subscriber_email = $("#subscriber_email").val();
+    var regex = /^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+).([a-z]{2,20})$/;
+alert(subscriber_email);
+    if (regex.test(subscriber_email) == false) {
+        alert("Please Enter Valid Email");
+        return false;
+    }
+
+    $.ajax({
+        type: 'post',
+        url: '/add-subscriber-email',
+        data: {
+            subscriber_email: subscriber_email,
+            _token: $('meta[name="csrf-token"]').attr('content')
+
+        },
+        success: function (resp) {
+            alert(resp);
+        },
+        error: function () {
+            alert("Error");
+        }
+    });
+}
+
